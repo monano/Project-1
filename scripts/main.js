@@ -1,42 +1,34 @@
-///last thing change css to addclass and fix the clear game board
-const points = ['p11', 'p12', 'p13', 'p21', 'p22', 'p23', 'p31', 'p32', 'p33'];
-let takenpoints = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-const numOfStones = 6;
-let blackStones = 3;
-let whiteStones = 3;
-let isBlackMill = false;
-let isWhiteMill = false;
-let blackPlayerTurn = true;
-let whitePlayerTurn = false;
-let endPlaceStone = false;
-let isOnMove = false;
-let onMoveStone = -1;
-let blackScoreText = $("#blackScore");
-let whiteScoreText = $("#whiteScore");
+//declaring the variables will be needed for this game
+const points = ['p11', 'p12', 'p13', 'p21', 'p22', 'p23', 'p31', 'p32', 'p33']; // the id for the circles divs
+let takenpoints = [0, 0, 0, 0, 0, 0, 0, 0, 0] // to get the colored circles (black=1, white=2, empty=0 )
+let blackStones = 3; //number of stones to be placed on the gameboard
+let whiteStones = 3; //number of stones to be placed on the gameboard
+let isBlackMill = false; //the black player winning state
+let isWhiteMill = false; //the white player winning state
+let blackPlayerTurn = true; //the players turn (true = black turn to play, false = white turn to play)
+let endPlaceStone = false; //state of placing stones on gameboard
+let isOnMove = false; // state of a stone
+let onMoveStone = -1; // index of the stone on move
 let whiteScore =0;
 let blackScore =0;
+let blackScoreText = $("#blackScore");
+let whiteScoreText = $("#whiteScore");
 let msgToPlayers = $(".msgToPlayers p");
-//console.log(blackScore,whiteScore,msgToPlayers);
 
-const loadPage = function () {
-    $(".startGame").removeClass("onload");
-//     $(".container").html(`
-//     <div class="startGame">
-//     <button type="button" class="btnStart">Start Game</button>
-// </div>
-//     `)
+
+const loadPage = function () {//when page load this function will be called 
+    $(".startGame").removeClass("onload");// display the start page 
  }
-const loadGame = function () {
-
+const loadGame = function () { // display the gameboard page and hide the start page
     $(".startGame").addClass("onload");
     $(".gameboard").removeClass("onload");
 }
 
 $("body").onload = loadPage();
 $("button").on("click", loadGame);
-// loadGame()
-const checkWinner = function () {
-   // console.log("in check function/ "+takenpoints);
+
+const checkWinner = function () {/* this function will check is there a black mill or white mill and return the winner 
+                                    and increase the winner score and set the turn to playe to the winner*/
     let Winner = "";
     if (takenpoints[0] == 1 && takenpoints[1] == 1 && takenpoints[2] == 1 ||
         takenpoints[3] == 1 && takenpoints[4] == 1 && takenpoints[5] == 1 ||
@@ -47,8 +39,7 @@ const checkWinner = function () {
         Winner = "Black Player Win ^_^";
         isBlackMill=true;
         blackPlayerTurn=true;
-        console.log(takenpoints);
-        blackScoreText.text(function() {
+        blackScoreText.text(function() { // show score on the player lable div 
             return " " + ++blackScore;
           });
     }
@@ -61,27 +52,20 @@ const checkWinner = function () {
         Winner = "White Player Win ^_^";
         isWhiteMill=true;
         blackPlayerTurn=false;
-        console.log(takenpoints);
-        whiteScoreText.text(function(){
+        whiteScoreText.text(function(){ // show score on the player lable div 
             return " "+ ++whiteScore
         });
     }
-    //console.log("in check function ending");
-    
     return Winner;
-
 }
-const printWinner = function(){
-   // console.log("in print function");
+const printWinner = function(){//this function will show the winning msg on the msg div
     let msg = checkWinner();
-    //console.log(msg);
     msgToPlayers.text(msg);
     clearGameBoard();
 }
-const selectStoneToMove = function (e) {
-    //console.log("inside move function start /"+ takenpoints)
-    let indexOfPoint = points.indexOf(e.currentTarget.id);
-    if (takenpoints[indexOfPoint] === 1 && blackPlayerTurn) {
+const selectStoneToMove = function (e) {// this function will allow the user to select a stone to move 
+    let indexOfPoint = points.indexOf(e.currentTarget.id);//take the div id of the stone to move
+    if (takenpoints[indexOfPoint] === 1 && blackPlayerTurn) {//check is the circle clicked is black and is the black player turn then change the circle color to gray
         isOnMove = true;
         onMoveStone = indexOfPoint;
         $(e.target).removeClass("blackStone whiteStone");
@@ -90,7 +74,7 @@ const selectStoneToMove = function (e) {
         //console.log("b");
        // blackPlayerTurn=false;
     }
-       else if(takenpoints[indexOfPoint] === 2 && !blackPlayerTurn) {
+       else if(takenpoints[indexOfPoint] === 2 && !blackPlayerTurn) {//check is the circle clicked is white and is the white player turn then change the circle color to gray
         isOnMove = true;
         onMoveStone = indexOfPoint;
         $(e.target).removeClass("whiteStone blackStone");
@@ -99,88 +83,51 @@ const selectStoneToMove = function (e) {
         //console.log("w");
         //blackPlayerTurn=true;
     }
-    //console.log(onMoveStone);
-    //console.log("inside move function end")
 
-        //         if(blackPlayerTurn){
-        //            $(e.target).addClass("blackStone");
-        //            blackPlayerTurn=false;
-        //            whitePlayerTurn=true;
-        //            takenpoints[indexOfPoint]=1;
-        //            console.log(takenpoints);
-        //         }
-        //         else{
-        //            $(e.target).addClass("whiteStone");
-        //            blackPlayerTurn=true;
-        //            whitePlayerTurn=false;
-        //            takenpoints[indexOfPoint]=1;
-        //            console.log(takenpoints);
-        //         }
-
-    
 }
-const selectStoneNewPlace = function (e) {
-   // console.log("inside next move function start  /"+takenpoints )
+const selectStoneNewPlace = function (e) {/* this function will allow the user to select a new plase for the stone and 
+                                             will not allow the player to move the stone diagonally and will call the setNextMove function*/
     let indexOfPoint = points.indexOf(e.currentTarget.id);
-    // console.log("---------")
-    // console.log(onMoveStone)
-    // console.log(indexOfPoint)
-    // console.log("---------")
     if (takenpoints[indexOfPoint] === 0) {
         if (onMoveStone == 0 && (indexOfPoint == 1 || indexOfPoint == 3)) {
-            // console.log("hi")
-            // console.log("0");
             setNextMove(e);
         }
         else if (onMoveStone == 1 && (indexOfPoint == 0 || indexOfPoint == 2 || indexOfPoint == 4)) {
-            // console.log("1");
             setNextMove(e);
         }
         else if (onMoveStone == 2 && (indexOfPoint == 1 || indexOfPoint == 5)) {
-            // console.log("2");
             setNextMove(e);
         }
         else if (onMoveStone == 3 && (indexOfPoint == 0 || indexOfPoint == 4 || indexOfPoint == 6)) {
-            // console.log("3");
             setNextMove(e);
         }
         else if (onMoveStone == 4 && (indexOfPoint == 1 || indexOfPoint == 3 || indexOfPoint == 5 || indexOfPoint == 7)) {
-            // console.log("4");
             setNextMove(e);
         }
         else if (onMoveStone == 5 && (indexOfPoint == 2 || indexOfPoint == 4 || indexOfPoint == 8)) {
-            // console.log("5");
             setNextMove(e);
         }
        else if (onMoveStone == 6 && (indexOfPoint == 3 || indexOfPoint == 7)) {
-            // console.log("6");
             setNextMove(e);
         }
         else if (onMoveStone == 7 && (indexOfPoint == 4 || indexOfPoint == 6 || indexOfPoint == 8)) {
-            // console.log("7");
             setNextMove(e);
         }
         else if (onMoveStone == 8 && (indexOfPoint == 5 || indexOfPoint == 7)) {
-            // console.log("8");
             setNextMove(e);
         }
     }
-    // console.log("inside next move function end")
 }
-const startGameMessage = function () {
+const startGameMessage = function () {//this function will show the a msg on the msg div
     msgToPlayers.text("Game Is On !");
-    // console.log("Game Is On !");
 }
-const placeStones = function (e) {
-    
-    //console.log("in place stones ");
+const placeStones = function (e) {/*this function will allow players to place theirs stones on the gameboard
+                                    and will color the circles depending on the turn of player
+                                    and will not allow players to form mill from the start of the game*/
     let indexOfPoint = points.indexOf(e.currentTarget.id);
     if (blackPlayerTurn) {
-        // console.log("in place stones 2222 ");
         if (blackStones != 0) {
-            // console.log("in place stones 333333");
             if (takenpoints[indexOfPoint] === 0) {
-                // console.log("in place stones444444 ");
                 takenpoints[indexOfPoint] = 1;
                 if (takenpoints[0] == 1 && takenpoints[1] == 1 && takenpoints[2] == 1 ||
                     takenpoints[3] == 1 && takenpoints[4] == 1 && takenpoints[5] == 1 ||
@@ -190,7 +137,6 @@ const placeStones = function (e) {
                     takenpoints[2] == 1 && takenpoints[5] == 1 && takenpoints[8] == 1) {
                     alert("you can not place stone here !")
                     takenpoints[indexOfPoint] = 0;
-                    // console.log("in place stones 55555555 ");
                 } else {
                     $(e.target).removeClass("normal stonOnMove whiteStone");
                     $(e.target).addClass("blackStone");
@@ -200,17 +146,13 @@ const placeStones = function (e) {
                     blackPlayerTurn = false;
                     //if (blackStones === 0) {
                         //blackPlayerTurn = false;
-                        // console.log("in place stones 666666666 ");
                     //}
                 }
             }
         }
     } else {
-        // console.log("in place stones w 11111111 ");
         if (whiteStones != 0) {
-            // console.log("in place stones w22222222 ");
             if (takenpoints[indexOfPoint] === 0) {
-                // console.log("in place stones w333333333 ");
                 takenpoints[indexOfPoint] = 2;
                 if (takenpoints[0] == 2 && takenpoints[1] == 2 && takenpoints[2] == 2 ||
                     takenpoints[3] == 2 && takenpoints[4] == 2 && takenpoints[5] == 2 ||
@@ -219,7 +161,6 @@ const placeStones = function (e) {
                     takenpoints[1] == 2 && takenpoints[4] == 2 && takenpoints[7] == 2 ||
                     takenpoints[2] == 2 && takenpoints[5] == 2 && takenpoints[8] == 2) {
                     alert("you can not place stone here !")
-                    // console.log("in place stones w4444444 ");
                     takenpoints[indexOfPoint] = 0;
                 } else {
                     $(e.target).removeClass("normal stonOnMove blackStone");
@@ -228,7 +169,6 @@ const placeStones = function (e) {
                     // takenpoints[indexOfPoint] = 2;
                     whiteStones--;
                     blackPlayerTurn = true;
-                    // console.log("in place stones w5555555555 ");
                     
                 }
             }
@@ -243,46 +183,37 @@ const placeStones = function (e) {
 
 }
 
-//document.getElementById("p11").addEventListener("click",addBlack);
-function game(e) {
-    // console.log(blackPlayerTurn)
-    // console.log(e.target);
-    // console.log("in click /"+endPlaceStone);
-
+function game(e) {//this function will be called when players click on circles and 
+                  //it calls all function needed for playing depending on the conditions
     if (endPlaceStone === false) {
         placeStones(e);
     } 
     else {
         if (isOnMove == false) {
-            //console.log("on move")
             selectStoneToMove(e);
         } else {
-            //console.log("chose next move")
             selectStoneNewPlace(e)
         }        
     }
 }
+
 $(".points-line div").on("click", game)
 
-const clearPreviousPoint = function () {
-    // $(".stonOnMove").css("color", "rgb(221, 94, 20)")
+const clearPreviousPoint = function () {//this function will change the circle color to normal after the player move the stone from it
      $(".stonOnMove").addClass("normal");
-   
 }
-const setNextMove = function (e) {
-    // console.log("in set next move function /"+takenpoints)
+const setNextMove = function (e) {// this function will be called in selectStoneNewPlace function to change the color of circle 
+                                  // to the color of player stone that move to its new place and will call clearPreviousPoint function
     let indexOfPoint = points.indexOf(e.currentTarget.id);
     takenpoints[onMoveStone] = 0;
     isOnMove = false;
-    // console.log(blackPlayerTurn);
     $(e.target).removeClass("normal stonOnMove blackStone whiteStone");
     if(blackPlayerTurn){
-        $(e.target).addClass("blackStone");
+    $(e.target).addClass("blackStone");
     blackPlayerTurn=false;
     takenpoints[indexOfPoint] = 1;
     }
-    else{
-        
+    else{      
     $(e.target).addClass("whiteStone");
     blackPlayerTurn=true;
     takenpoints[indexOfPoint] = 2;
@@ -290,28 +221,20 @@ const setNextMove = function (e) {
     clearPreviousPoint();
     printWinner();
 }
-const clearGameBoard =function(){
+const clearGameBoard =function(){// this function will clear the gameboard to start a new game when any of the players win
      $(".points-line div").off()
      $(".points-line div").on("click", game)
-    // console.log("black/"+isBlackMill+"white/"+isWhiteMill)
     if(isBlackMill||isWhiteMill){
         isWhiteMill=false;
         isBlackMill=false;
         endPlaceStone=false;
         blackStones=3;
         whiteStones=3;
-        //console.log("endPlaceStone"+endPlaceStone)
        setTimeout(function(){
         //$(".circle").removeClass("blackStone whiteStone stonOnMove");
-           $(".circle").addClass("normal");
-            
+           $(".circle").addClass("normal");       
         },800);
        takenpoints=takenpoints.map(x => 0);
-    //    console.log("Game board is clear /"+takenpoints);
-      
     }
   
 }
-// $(".points-line div").on("click", function(e){
-//     moveStones(e);
-// })
