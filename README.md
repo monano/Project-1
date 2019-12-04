@@ -143,3 +143,5 @@ const placeStones = function (e) {
 [animate css code](https://tobiasahlin.com/moving-letters/#6)
 
 [sweet alert](https://sweetalert2.github.io/)
+
+[giv](https://gfycat.com/mealyfixedaffenpinscher)
