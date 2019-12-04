@@ -134,8 +134,12 @@ const placeStones = function (e) {
 * Adding more animation in the game.
 * Adding interactive sounds to the game.
 
-### Links
+
+
+## Links
 <!-- links -->
 [Three Mens Morris game](https://en.wikipedia.org/wiki/Three_men%27s_morris)
 
 [animate css code](https://tobiasahlin.com/moving-letters/#6)
+
+[sweet alert](https://sweetalert2.github.io/)

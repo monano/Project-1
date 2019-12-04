@@ -41,6 +41,31 @@ $("button").on("click", loadGame);
 $(".btnHowToPlay").on("click", howPage);
 $(".btnBack").on("click", backToMainPage);
 
+const iWinYoulose = function(){
+  
+    let timerInterval
+    Swal.fire({
+      title: 'مرطا ا ا ا ا خ',
+      width: 800,
+  padding: '3px',
+      // background: 'url(images/kirbydance.gif_c200)',
+      backdrop: `
+        rgba(0,0,123,0.4)
+        url("images/kirbydance.gif_c200")
+        center top
+        no-repeat
+      `,
+      timer: 5000,
+      timerProgressBar: true,
+      onBeforeOpen: () => {
+        timerInterval = setInterval(() => {
+        }, 100)
+      },
+      onClose: () => {
+        clearInterval(timerInterval)
+      }
+    })
+}
 const checkWinner = function () {
     /* 
     this function will check is there a black mill or white mill and return the winner 
@@ -80,6 +105,9 @@ const checkWinner = function () {
 const printWinner = function () { //this function will show the winning msg on the msg div
     let msg = checkWinner();
     msgToPlayers.text(msg);
+    if(msg){
+        iWinYoulose();
+    }
     clearGameBoard();
 }
 const selectStoneToMove = function (e) { // this function will allow the user to select a stone to move 
