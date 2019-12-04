@@ -26,7 +26,14 @@
     </div>
     <div class="msgToPlayers">
         <!-- 3rd div contain the messages to be shown to plyers-->
-        <p>Press Start Game</p>
+        <p class="msg">
+            <span class="text-wrapper">
+                <span class="letters">Press Start Game</span>
+            </span>
+        </p>
+
+
+        <!-- <p>Press Start Game</p> -->
     </div>
     <!-- <div id="">
         <svg id="svg1" width="0" heightt="0">
@@ -39,46 +46,69 @@
         <div class="startGame onload">
             <!-- start page shown on load -->
             <button type="button" class="btnStart">Start Game</button>
-        </div>
+            <div class="btnHowToPlay">
+                <h3>>How To Play<</h3> </div> </div> <div class="HowToPlayPage onload">
 
-        <div class="gameboard onload">
-            <!-- gameboard div -->
-            <!-- Line1 sq1-->
-            <div id="first" class="points-line">
+                        <!-- Instructions div  -->
+                        <div class="instructions">
+                            <h1>Instructions</h1>
+                        </div>
+                        <div class="instructionsList">
+                            <ul>
+                                <li>Each player has three pieces. and there is two colors: black and white.</li>
+                                <li>The board is empty to begin the game, and players take turns placing their pieces on
+                                    the empty gameboard.</li>
+                                <li>Once all pieces are placed (no player allowed to make a mill in the placing step),
+                                    play proceeds with each player moving one of their pieces per turn.</li>
+                                <li>A piece may move to any adjacent point on the board, diagonally move is not allowed.
+                                </li>
+                                <li>The winner is the first player to align their three pieces on a vertical line or
+                                    horizontal line. </li>
+                            </ul>
+                        </div>
+                        <div class="btnBack">
+                            <h3>
+                                << Back </h3> </div> </div> <!-- gameboard div -->
+                                    <div class="gameboard onload">
 
-                <div id="p11"><span class="circle"></span></div>
-                <div id="p12"><span class="circle"></span></div>
-                <div id="p13"><span class="circle"></span></div>
+                                        <!-- Line1 sq1-->
+                                        <div id="first" class="points-line">
 
-            </div>
+                                            <div id="p11"><span class="circle"></span></div>
+                                            <div id="p12"><span class="circle"></span></div>
+                                            <div id="p13"><span class="circle"></span></div>
 
-            <!-- Line2 sq2-->
-            <div id="mid" class="points-line">
-                <div id="p21"><span class="circle"></span></div>
-                <div id="p22"><span class="circle"></span></div>
-                <div id="p23"><span class="circle"></span></div>
+                                        </div>
 
-            </div>
+                                        <!-- Line2 sq2-->
+                                        <div id="mid" class="points-line">
+                                            <div id="p21"><span class="circle"></span></div>
+                                            <div id="p22"><span class="circle"></span></div>
+                                            <div id="p23"><span class="circle"></span></div>
 
-            <!-- Line3 sq3-->
-            <div id="last" class="points-line">
-                <div id="p31"><span class="circle"></span></div>
-                <div id="p32"><span class="circle"></span></div>
-                <div id="p33"><span class="circle"></span></div>
-            </div>
+                                        </div>
 
-        </div>
+                                        <!-- Line3 sq3-->
+                                        <div id="last" class="points-line">
+                                            <div id="p31"><span class="circle"></span></div>
+                                            <div id="p32"><span class="circle"></span></div>
+                                            <div id="p33"><span class="circle"></span></div>
+                                        </div>
 
-    </div>
-    <footer class="footer">
-        <h4>developed by <span id="monano-color">monano ^_^</span></h4>
-    </footer>
+                                    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+                        </div>
+                        <footer class="footer">
+                            <h4>developed by <span id="monano-color">monano ^_^</span></h4>
+                        </footer>
 
-    <script src="../scripts/main.js"></script>
+
+                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+                        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous">
+                        </script>
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+                        <script src="../scripts/main.js"></script>
 </body>
 
 </html>

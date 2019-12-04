@@ -13,25 +13,39 @@ let whiteScore = 0;
 let blackScore = 0;
 let blackScoreText = $("#blackScore");
 let whiteScoreText = $("#whiteScore");
-let msgToPlayers = $(".msgToPlayers p");
+let msgToPlayers = $(".msg");
 let rounds = 1;
 
 
 const loadPage = function () { //when page load this function will be called 
     $(".startGame").removeClass("onload"); // display the start page 
 }
+const howPage = function () { // display the Instructions page and hide the start page
+    $(".startGame").addClass("onload");
+    $(".gameboard").addClass("onload");
+    $(".HowToPlayPage").removeClass("onload");
+}
 const loadGame = function () { // display the gameboard page and hide the start page
     $(".startGame").addClass("onload");
+    $(".HowToPlayPage").addClass("onload");
     $(".gameboard").removeClass("onload");
     msgToPlayers.text("Game Is On !");
 }
-
+const backToMainPage = function () { //display the Start Page page and hide the Instructions Page
+    $(".gameboard").addClass("onload");
+    $(".HowToPlayPage").addClass("onload");
+    $(".startGame").removeClass("onload");
+}
 $("body").onload = loadPage();
 $("button").on("click", loadGame);
+$(".btnHowToPlay").on("click", howPage);
+$(".btnBack").on("click", backToMainPage);
 
 const checkWinner = function () {
-    /* this function will check is there a black mill or white mill and return the winner 
-                                        and increase the winner score and set the turn to playe to the winner*/
+    /* 
+    this function will check is there a black mill or white mill and return the winner 
+    and increase the winner score and set the turn to playe to the winner
+    */
     let Winner = "";
     if (takenpoints[0] == 1 && takenpoints[1] == 1 && takenpoints[2] == 1 ||
         takenpoints[3] == 1 && takenpoints[4] == 1 && takenpoints[5] == 1 ||
@@ -90,32 +104,32 @@ const selectStoneToMove = function (e) { // this function will allow the user to
 
 }
 const selectStoneNewPlace = function (e) {
-    /* this function will allow the user to select a new plase for the stone and 
-                                                 will not allow the player to move the stone diagonally and will call the setNextMove function*/
+    /* 
+    this function will allow the user to select a new plase for the stone and 
+    will not allow the player to move the stone diagonally and will call the setNextMove function
+    */
     let indexOfPoint = points.indexOf(e.currentTarget.id);
     if (takenpoints[indexOfPoint] === 0) {
         if (onMoveStone == 0 && (indexOfPoint == 1 || indexOfPoint == 3)) {
-            setNextMove(e,true);
+            setNextMove(e, true);
         } else if (onMoveStone == 1 && (indexOfPoint == 0 || indexOfPoint == 2 || indexOfPoint == 4)) {
-            setNextMove(e,true);
+            setNextMove(e, true);
         } else if (onMoveStone == 2 && (indexOfPoint == 1 || indexOfPoint == 5)) {
-            setNextMove(e,true);
+            setNextMove(e, true);
         } else if (onMoveStone == 3 && (indexOfPoint == 0 || indexOfPoint == 4 || indexOfPoint == 6)) {
-            setNextMove(e,true);
+            setNextMove(e, true);
         } else if (onMoveStone == 4 && (indexOfPoint == 1 || indexOfPoint == 3 || indexOfPoint == 5 || indexOfPoint == 7)) {
-            setNextMove(e,true);
+            setNextMove(e, true);
         } else if (onMoveStone == 5 && (indexOfPoint == 2 || indexOfPoint == 4 || indexOfPoint == 8)) {
-            setNextMove(e,true);
+            setNextMove(e, true);
         } else if (onMoveStone == 6 && (indexOfPoint == 3 || indexOfPoint == 7)) {
-            setNextMove(e,true);
+            setNextMove(e, true);
         } else if (onMoveStone == 7 && (indexOfPoint == 4 || indexOfPoint == 6 || indexOfPoint == 8)) {
-            setNextMove(e,true);
+            setNextMove(e, true);
         } else if (onMoveStone == 8 && (indexOfPoint == 5 || indexOfPoint == 7)) {
-            setNextMove(e),true;
-        }
-        else{
-            console.log("un allowed move")
-            setNextMove(e,false);
+            setNextMove(e), true;
+        } else {
+            setNextMove(e, false);
         }
     }
 }
@@ -123,9 +137,11 @@ const selectStoneNewPlace = function (e) {
 //     msgToPlayers.text("Game Is On !");
 // }
 const placeStones = function (e) {
-    /*this function will allow players to place theirs stones on the gameboard
-                                        and will color the circles depending on the turn of player
-                                        and will not allow players to form mill from the start of the game*/
+    /*
+    this function will allow players to place theirs stones on the gameboard
+    and will color the circles depending on the turn of player
+    and will not allow players to form mill from the start of the game
+    */
     let indexOfPoint = points.indexOf(e.currentTarget.id);
     if (blackPlayerTurn) {
         if (blackStones != 0) {
@@ -137,11 +153,11 @@ const placeStones = function (e) {
                     takenpoints[0] == 1 && takenpoints[3] == 1 && takenpoints[6] == 1 ||
                     takenpoints[1] == 1 && takenpoints[4] == 1 && takenpoints[7] == 1 ||
                     takenpoints[2] == 1 && takenpoints[5] == 1 && takenpoints[8] == 1) {
-                        Swal.fire(
-                            'unallowed move',
-                            'you can not place the stone here',
-                            'warning'
-                          )
+                    Swal.fire(
+                        "you can't place the stone here",
+                        '',
+                        'warning'
+                    )
                     //alert("you can not place stone here !")
                     takenpoints[indexOfPoint] = 0;
                 } else {
@@ -167,12 +183,12 @@ const placeStones = function (e) {
                     takenpoints[0] == 2 && takenpoints[3] == 2 && takenpoints[6] == 2 ||
                     takenpoints[1] == 2 && takenpoints[4] == 2 && takenpoints[7] == 2 ||
                     takenpoints[2] == 2 && takenpoints[5] == 2 && takenpoints[8] == 2) {
-                        // Swal.fire(
-                        //     'unallowed move',
-                        //     'you can not place the stone here',
-                        //     'warning'
-                        //   )
-                    alert("you can not place stone here !")
+                    Swal.fire(
+                        "you can't place the stone here",
+                        '',
+                        'warning'
+                    )
+                    //alert("you can not place stone here !")
                     takenpoints[indexOfPoint] = 0;
                 } else {
                     $(e.target).removeClass("normal stonOnMove blackStone");
@@ -213,38 +229,36 @@ $(".points-line div").on("click", game)
 const clearPreviousPoint = function () { //this function will change the circle color to normal after the player move the stone from it
     $(".stonOnMove").addClass("normal");
 }
-const setNextMove = function (e,isallowed) { // this function will be called in selectStoneNewPlace function to change the color of circle 
+const setNextMove = function (e, isallowed) { // this function will be called in selectStoneNewPlace function to change the color of circle 
     // to the color of player stone that move to its new place and will call clearPreviousPoint function
-    if(!isallowed){
+    if (!isallowed) {
         // $(".points-line div").off();
         // $(".points-line div").on("click", game)
-        console.log("set back color "+isOnMove)
-        $("#"+points[onMoveStone]+" .circle").removeClass("stonOnMove");
-        if(takenpoints[onMoveStone]==1){
-            $("#"+points[onMoveStone]+" .circle").addClass("blackStone");
+        console.log("set back color " + isOnMove)
+        $("#" + points[onMoveStone] + " .circle").removeClass("stonOnMove");
+        if (takenpoints[onMoveStone] == 1) {
+            $("#" + points[onMoveStone] + " .circle").addClass("blackStone");
+        } else if (takenpoints[onMoveStone] == 2) {
+            $("#" + points[onMoveStone] + " .circle").addClass("whiteStone");
         }
-        else if(takenpoints[onMoveStone]==2){
-            $("#"+points[onMoveStone]+" .circle").addClass("whiteStone");
-        }
-        isOnMove=false;
-    }
-    else{
-    let indexOfPoint = points.indexOf(e.currentTarget.id);
-    takenpoints[onMoveStone] = 0;
-    isOnMove = false;
-    $(e.target).removeClass("normal stonOnMove blackStone whiteStone");
-    if (blackPlayerTurn) {
-        $(e.target).addClass("blackStone");
-        blackPlayerTurn = false;
-        takenpoints[indexOfPoint] = 1;
+        isOnMove = false;
     } else {
-        $(e.target).addClass("whiteStone");
-        blackPlayerTurn = true;
-        takenpoints[indexOfPoint] = 2;
+        let indexOfPoint = points.indexOf(e.currentTarget.id);
+        takenpoints[onMoveStone] = 0;
+        isOnMove = false;
+        $(e.target).removeClass("normal stonOnMove blackStone whiteStone");
+        if (blackPlayerTurn) {
+            $(e.target).addClass("blackStone");
+            blackPlayerTurn = false;
+            takenpoints[indexOfPoint] = 1;
+        } else {
+            $(e.target).addClass("whiteStone");
+            blackPlayerTurn = true;
+            takenpoints[indexOfPoint] = 2;
+        }
+        clearPreviousPoint();
+        printWinner();
     }
-    clearPreviousPoint();
-    printWinner();
-}
 }
 const clearGameBoard = function () { // this function will clear the gameboard to start a new game when any of the players win
     $(".points-line div").off()
@@ -259,11 +273,27 @@ const clearGameBoard = function () { // this function will clear the gameboard t
             //$(".circle").removeClass("blackStone whiteStone stonOnMove");
             $(".circle").addClass("normal");
             round();
-        }, 800);
+        }, 1600);
         takenpoints = takenpoints.map(x => 0);
     }
 
 }
-const round=function(){
-    msgToPlayers.text("Round "+rounds +" Start");
+const round = function () {
+    msgToPlayers.text("Round " + rounds + " Start");
 }
+
+// trying codes
+// Wrap every letter in a span
+let textWrapper = document.querySelector('.msg .letters');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({
+        loop: true
+    })
+    .add({
+        targets: '.msg .letter',
+        translateY: ["30px", 0],
+        translateZ: 0,
+        duration: 950,
+        delay: (el, i) => 50 * i
+    });

@@ -1,17 +1,24 @@
 <!-- heading section -->
 # Three Mens Morris Game
 
-This is a two players game that start with each player having 3 stones 
-and detrmain the winning when one of the players stones make a virtacly line or horzontly line.
+This is a two players game that start with each player having 3 stones to place it on the board,
+The winner is the first player to align their three pieces on a vertical line or horizontal line.
 
 <!-- unorder list -->
-
-* Js
+## Technologis Used
+* Java Script
 * Jquery
-- Front End
-    * html
-    * css
+* HTML
+* CSS
 
+## Game Wireframe and User Stories
+<!-- images -->
+### Wireframe
+![Game Wireframe](images/Game-Wireframe.png)
+### User Stories
+1. Players start placing thier stones on the empty game board.
+2. Players start moving thier stones.
+3. Player who have thier stons on line win.
 <!-- order list -->
 <!-- 
 1. JS
@@ -20,17 +27,10 @@ and detrmain the winning when one of the players stones make a virtacly line or 
 -->
 
 
-<!-- images -->
-![Game Board](images/240px-Three_Men's_Morris_variant_board.svg.png)
-
-<!-- links -->
-[Three Mens Morris game](https://en.wikipedia.org/wiki/Three_men%27s_morris)
-
 <!-- sperator line -->
 <!-- --- -->
 
-<!-- add code -->
-
+## Snippet Of The Code
 ### Place Stones On Board Function
 ```js
 const placeStones = function (e) {
@@ -91,3 +91,8 @@ const placeStones = function (e) {
 
 }
 ```
+### Links
+<!-- links -->
+[Three Mens Morris game](https://en.wikipedia.org/wiki/Three_men%27s_morris)
+
+[animate css code](https://tobiasahlin.com/moving-letters/#6)
