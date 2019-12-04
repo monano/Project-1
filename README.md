@@ -15,10 +15,38 @@ The winner is the first player to align their three pieces on a vertical line or
 <!-- images -->
 ### Wireframe
 ![Game Wireframe](images/Game-Wireframe.png)
+
 ### User Stories
-1. Players start placing thier stones on the empty game board.
-2. Players start moving thier stones.
-3. Player who have thier stons on line win.
+1. Game start with two players each player have three stones.
+2. Players start placing thier stones on the empty game board reciprocally, while trying to make it hard for the othor player to make a mill.
+3. First player to place thier stone is the one to start to move any stone belong to thim.
+4. Players can move thier stones one step horizontally or vertically.
+5. Player must move the stones aiming to make a mill.
+6. Player who make mill first win.
+
+## Four Days Of Coding
+### Day One
+    -HTML/CSS
+        * Design the board game, writing the needed HTML elements and CSS classes to be used for the game.
+    -Js/Jquery
+        * Declaring the needed variables to be used by the functions.
+        * Writing the code for the functions: place stone and check winner.
+### Day Two
+    -HTML/CSS
+        * Design the start page that shows when user first open the game site.
+    -Js/Jquery
+        * Declaring the needed variables to be used by the functions.
+        * Writing the code for the functions: select stone and move stone.
+### Day Three
+    -HTML/CSS
+        * Added a section for the players labels that hold their color and scores, and the message section to show which player win.
+    -Js/Jquery
+        * Added the needed code lines for the players scores and message sections.
+### Day Four <last day>
+    -HTML/CSS
+        * Design How to play button and an instructions page, Added3 the animate classes for the message section on CSS and HTML.
+    -Js/Jquery
+        * Fixing the reselect a stone problem.
 <!-- order list -->
 <!-- 
 1. JS
@@ -91,6 +119,21 @@ const placeStones = function (e) {
 
 }
 ```
+
+## Challenges 
+* Figuring out how to code the functions for the game, especially the move stone function.
+* Fixing the reselect problem.
+* Making the game a multi round game.
+
+## Features and Improvements to be in Three Mens Morris Game V2 
+* Adding a multi size gameboard with more stones to play with.
+* Adding a multi shape gameboard.
+* Adding an images for the stone instead of colors.
+* Put the name of the players on the player label section.
+* Make the player choose their stones icone.
+* Adding more animation in the game.
+* Adding interactive sounds to the game.
+
 ### Links
 <!-- links -->
 [Three Mens Morris game](https://en.wikipedia.org/wiki/Three_men%27s_morris)

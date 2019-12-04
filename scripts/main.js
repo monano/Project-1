@@ -127,7 +127,7 @@ const selectStoneNewPlace = function (e) {
         } else if (onMoveStone == 7 && (indexOfPoint == 4 || indexOfPoint == 6 || indexOfPoint == 8)) {
             setNextMove(e, true);
         } else if (onMoveStone == 8 && (indexOfPoint == 5 || indexOfPoint == 7)) {
-            setNextMove(e), true;
+            setNextMove(e, true);
         } else {
             setNextMove(e, false);
         }
