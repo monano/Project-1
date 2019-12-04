@@ -8,72 +8,77 @@
     <link rel="stylesheet" href="../stylesheets/main.css" type="text/css" />
 </head>
 
-<body >
-    <div class="header"> <!-- header div contain the game name-->
-       <h1>Three Men's Morris Game </h1>
+<body>
+    <div class="header">
+        <!-- header div contain the game name-->
+        <h1>Three Men's Morris Game </h1>
     </div>
-    <div class="playersLable"> <!-- second div contain the players colors and the players scores-->
-            <div class="blackPlayerLable">
-                <h3>Black</h3>
-                <h3 id="blackScore">_</h3>
-            </div>
-            <div class="whitePlayerLable">
-                <h3>White</h3>
-                <h3 id="whiteScore">_</h3>
-            </div>
+    <div class="playersLable">
+        <!-- second div contain the players colors and the players scores-->
+        <div class="blackPlayerLable">
+            <h3>Black</h3>
+            <h3 id="blackScore">_</h3>
         </div>
-        <div class="msgToPlayers"> <!-- 3rd div contain the messages to be shown to plyers-->
-            <p>Press Start Game</p>
+        <div class="whitePlayerLable">
+            <h3>White</h3>
+            <h3 id="whiteScore">_</h3>
         </div>
-        <!-- <div id="">
+    </div>
+    <div class="msgToPlayers">
+        <!-- 3rd div contain the messages to be shown to plyers-->
+        <p>Press Start Game</p>
+    </div>
+    <!-- <div id="">
         <svg id="svg1" width="0" heightt="0">
         <path id="lineBetweenPoints" d="M0 0" stroke-width="1px" style="stroke:#555; fill:none"></path>
         </svg>
         </div> -->
-<div class="container"> <!-- 4th div contain the start page and the gameboard-->
+    <div class="container">
+        <!-- 4th div contain the start page and the gameboard-->
 
-    <div class="startGame onload"><!-- start page shown on load -->
-        <button type="button" class="btnStart">Start Game</button>
+        <div class="startGame onload">
+            <!-- start page shown on load -->
+            <button type="button" class="btnStart">Start Game</button>
+        </div>
+
+        <div class="gameboard onload">
+            <!-- gameboard div -->
+            <!-- Line1 sq1-->
+            <div id="first" class="points-line">
+
+                <div id="p11"><span class="circle"></span></div>
+                <div id="p12"><span class="circle"></span></div>
+                <div id="p13"><span class="circle"></span></div>
+
+            </div>
+
+            <!-- Line2 sq2-->
+            <div id="mid" class="points-line">
+                <div id="p21"><span class="circle"></span></div>
+                <div id="p22"><span class="circle"></span></div>
+                <div id="p23"><span class="circle"></span></div>
+
+            </div>
+
+            <!-- Line3 sq3-->
+            <div id="last" class="points-line">
+                <div id="p31"><span class="circle"></span></div>
+                <div id="p32"><span class="circle"></span></div>
+                <div id="p33"><span class="circle"></span></div>
+            </div>
+
+        </div>
+
     </div>
-
-    <div class="gameboard onload"><!-- gameboard div -->
-        <!-- Line1 sq1-->
-        <div id="first" class="points-line">
-    
-            <div id="p11"><span class="circle"></span></div>
-            <div id="p12"><span class="circle"></span></div>
-            <div id="p13"><span class="circle"></span></div>
-    
-        </div>
-    
-        <!-- Line2 sq2-->
-        <div id="mid" class="points-line">
-            <div id="p21"><span class="circle"></span></div>
-            <div id="p22"><span class="circle"></span></div>
-            <div id="p23"><span class="circle"></span></div>
-    
-        </div>
-    
-        <!-- Line3 sq3-->
-        <div id="last" class="points-line">
-            <div id="p31"><span class="circle"></span></div>
-            <div id="p32"><span class="circle"></span></div>
-            <div id="p33"><span class="circle"></span></div>
-        </div>
-    
-    </div>
-
-</div>
-<footer class="footer">
+    <footer class="footer">
         <h4>developed by <span id="monano-color">monano ^_^</span></h4>
-</footer>
+    </footer>
 
-<script
-src="https://code.jquery.com/jquery-3.4.1.min.js"
-integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
-<script src="../scripts/main.js"></script>
+    <script src="../scripts/main.js"></script>
 </body>
 
 </html>
