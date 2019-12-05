@@ -4,6 +4,8 @@
 This is a two players game that start with each player having 3 stones to place it on the board,
 The winner is the first player to align their three pieces on a vertical line or horizontal line.
 
+## My Game Deployment
+[Go To The Game ](https://monano.github.io/Project-1/)
 <!-- unorder list -->
 ## Technologis Used
 * Java Script
@@ -140,8 +142,8 @@ const placeStones = function (e) {
 <!-- links -->
 [Three Mens Morris game](https://en.wikipedia.org/wiki/Three_men%27s_morris)
 
-[animate css code](https://tobiasahlin.com/moving-letters/#6)
+[Animate css code](https://tobiasahlin.com/moving-letters/#6)
 
-[sweet alert](https://sweetalert2.github.io/)
+[Sweet alert](https://sweetalert2.github.io/)
 
-[giv](https://gfycat.com/mealyfixedaffenpinscher)
+[Giv picture](https://gfycat.com/mealyfixedaffenpinscher)
